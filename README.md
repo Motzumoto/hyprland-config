@@ -4,8 +4,11 @@ Also, you need to be using the hyprland window manager.
 # Usage/Installation
 
 I started with a hyprland starter, and I suggest you do the same as copying over my configs will be a **lot** easier.
+
 Personally, I used [this one](https://github.com/mylinuxforwork/hyprland-starter) by @mylinuxforwork
+
 If you choose to use any other starter, a lot of my commands will **not** work as they require the scripts given with that specific starter.
+
 ### Note: I use zsh. You will need to move config variables I have in my zsh file to your respective file. 
 ## Run the following commands: 
 (You don't need to install powerlevel10k manually, as it's done automatically in zshrc)
