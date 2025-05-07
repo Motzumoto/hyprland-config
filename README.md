@@ -31,3 +31,6 @@ systemctl --user daemon-reload
 systemctl --user status pscircle-wallpaper.service
 systemctl --user status pscircle-wallpaper.timer
 ```
+
+
+If I missed anything, please open an issue!
