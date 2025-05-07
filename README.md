@@ -1,4 +1,8 @@
 # My Hyprland Config
+
+![image](https://github.com/user-attachments/assets/5fc4b781-5808-46b9-b9f3-af3a876a244d)
+
+
 All support and usage directions will be for Arch-based systems. Any other linux distro I won't provide support for because I simply don't know how they would function.
 Also, you need to be using the hyprland window manager. 
 # Usage/Installation
