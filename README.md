@@ -44,8 +44,6 @@ systemctl --user enable pscircle-wallpaper.timer
 If you plan to use the included zsh configuration, you'll need these additional packages:
 ```shell
 yay -S exa bat fd reflectorRemove unused Waybar scripts and configuration files
-
-All unused scripts, style files, and configuration relating to Waybar have been removed to clean up unused resources. This simplifies the project by reducing redundancy and ensuring only necessary files are maintained.
 ```
 
 
