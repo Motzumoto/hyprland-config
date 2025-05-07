@@ -35,5 +35,33 @@ systemctl --user status pscircle-wallpaper.service
 systemctl --user status pscircle-wallpaper.timer
 ```
 
+## Additional Dependencies
+
+If you plan to use the included zsh configuration, you'll need these additional packages:
+```shell
+yay -S exa bat fd reflector
+```
+
+
+
+## Configuration Files
+1. Copy the configuration directories to their respective locations:
+   ```shell
+   cp -r hypr/ ~/.config/
+   cp -r waybar/ ~/.config/
+   cp zshrc ~/.zshrc
+   cp p10k.zsh ~/.p10k.zsh
+   ```
+
+2. For fastfetch configuration:
+   ```shell
+   # If using system-wide installation
+   sudo cp -r fastfetch/* /etc/fastfetch/
+   # OR for user-specific installation
+   cp -r fastfetch/* ~/.config/fastfetch/
+   ```
+
+## Notifications
+For notification support, the hyprland starter already includes a notification daemon. If you need to customize notifications, you can modify the relevant sections in the hypr configuration.
 
 If I missed anything, please open an issue!
