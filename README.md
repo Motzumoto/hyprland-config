@@ -35,8 +35,8 @@ Put the files in the services folder in `~/.config/systemd/user`
 After you do that, you can run these commands to enable them:
 ```shell
 systemctl --user daemon-reload
-systemctl --user status pscircle-wallpaper.service
-systemctl --user status pscircle-wallpaper.timer
+systemctl --user enable pscircle-wallpaper.service
+systemctl --user enable pscircle-wallpaper.timer
 ```
 
 ## Additional Dependencies
