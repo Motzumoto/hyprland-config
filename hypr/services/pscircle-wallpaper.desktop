@@ -1,0 +1,11 @@
+[Unit]
+Description=Update pscircle wallpaper
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/lain/.config/hypr/pscircle-hyprpaper.sh
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
