@@ -1,5 +1,6 @@
 # My Hyprland Config
 
+https://github.com/user-attachments/assets/3115afd9-1106-4de6-a9d8-0fa6e3ea1c13
 
 
 All support and usage directions will be for Arch-based systems. Any other linux distro I won't provide support for because I simply don't know how they would function.
