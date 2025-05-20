@@ -1,6 +1,5 @@
 # My Hyprland Config
 
-![image](https://github.com/user-attachments/assets/5fc4b781-5808-46b9-b9f3-af3a876a244d)
 
 
 All support and usage directions will be for Arch-based systems. Any other linux distro I won't provide support for because I simply don't know how they would function.
@@ -24,30 +23,15 @@ yay -S base-devel fftw alsa-lib iniparser pulseaudio pkgconf checkupdates-with-a
 After you're done installing these packages, find where fastfetch is located and drop my files in your fastfetch folder.
 
 ## Install FastCat
-required addon for fastfetch
+(non-required addon, but it is nice for customization.)
 ```shell
 cd ~ && git clone --depth 1 https://github.com/m3tozz/FastCat.git && cd FastCat && bash ./fastcat.sh --shell
 ```
-
-# Services
-Put the files in the services folder in `~/.config/systemd/user`
-
-After you do that, you can run these commands to enable them:
-```shell
-systemctl --user daemon-reload
-systemctl --user enable pscircle-wallpaper.service
-systemctl --user enable pscircle-wallpaper.timer
-```
-
-## Additional Dependencies
 
 If you plan to use the included zsh configuration, you'll need these additional packages:
 ```shell
 yay -S exa bat fd reflector
 ```
-
-
-
 ## Configuration Files
 1. Copy the configuration directories to their respective locations:
    ```shell

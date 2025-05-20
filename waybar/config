@@ -1,0 +1,209 @@
+{
+  "layer": "top",
+  "position": "top",
+  "modules-left": [
+	"custom/logo",
+	"clock",
+	"custom/weather",
+	"disk",
+	"memory",
+	"cpu",
+	"temperature",
+	"custom/powerDraw",
+	"hyprland/window"
+  ],
+  "modules-center": [
+	"hyprland/workspaces"
+  ],
+  "modules-right": [
+	"tray",
+	"custom/clipboard",
+	"custom/updates",
+	"custom/colorpicker",
+	"bluetooth",
+	"pulseaudio",
+	"network",
+	"custom/headsetBat",
+  ],
+  "reload_style_on_change": true,
+  "custom/logo": {
+	"format": "",
+	"tooltip": false
+  },
+"hyprland/workspaces": {
+  "all-outputs": false,
+  "active-only": false,
+
+  "persistent-workspaces": {
+    "DP-2":     [1,2,3,4,5,6,7,8,9,10],
+    "HDMI-A-1": [11,12,13,14,15,16,17,18,19,20]
+  },
+
+  "format": "{icon}",
+  "format-icons": {
+    "active":  "",
+    "default": "",
+    "urgent":  "",
+    "visible": "",
+    "empty":   ""
+  }
+},
+"custom/headsetBat": {
+	"exec": "/home/lain/bin/headset-battery.sh --bar",
+	"interval": 1,
+	"return-type": "text",
+	"format": "{}",
+	"tooltip": false
+  },
+  "custom/weather": {
+	"format": "{}",
+	"return-type": "json",
+	"exec": "~/.config/waybar/scripts/weather.sh",
+	"interval": 30,
+	"on-click": "firefox https://wttr.in"
+  },
+"custom/updates": {
+    "format": "󰚰 {}",
+    "exec": "~/.config/waybar/scripts/myupdate.sh",
+    "interval": 3600,  // run once per hour
+    "return-type": "json",
+    "on-click": "foot yay -Syu --noconfirm"
+},
+
+
+  "custom/clipboard": {
+	// display a clipboard icon + the count of saved entries
+	"exec": "printf \" %d\" $(cliphist list | wc -l)",
+	"interval": 1,
+	"return-type": "text",
+	// left-click: choose an entry to recopy
+	"on-click": "cliphist list | rofi -dmenu -p 'Clipboard History' | cliphist decode | wl-copy; pkill -SIGRTMIN+1 waybar",
+	// right-click: clear entire history
+	"on-click-right": "cliphist wipe; pkill -SIGRTMIN+1 waybar",
+	// middle-click: clear the current clipboard content
+	"on-click-middle": "echo -n '' | wl-copy; pkill -SIGRTMIN+1 waybar",
+	// allow manual refresh via signal 1
+	"signal": 1
+  },
+  "clock": {
+	"format": "{:%I:%M:%S %p}",
+	"interval": 1,
+	"tooltip-format": "\n<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+	"calendar-weeks-pos": "right",
+	"today-format": "<span color='#7645AD'><b><u>{}</u></b></span>",
+	"format-calendar": "<span color='#aeaeae'><b>{}</b></span>",
+	"format-calendar-weeks": "<span color='#aeaeae'><b>W{:%V}</b></span>",
+	"format-calendar-weekdays": "<span color='#aeaeae'><b>{}</b></span>"
+  },
+  "bluetooth": {
+	"format-on": "",
+	"format-off": "󰂲",
+	"format-disabled": "󰂲",
+	"format-connected": "󰂴",
+	"format-connected-battery": "{device_battery_percentage}% 󰂴",
+	"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+	"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+	"on-click": "rofi-bluetooth"
+  },
+  "network": {
+	"format-wifi": " ",
+	"format-ethernet": " ",
+	"format-disconnected": "",
+	"tooltip-format": "{ipaddr}",
+	"tooltip-format-wifi": "{essid} ({signalStrength}%)  | {ipaddr}",
+	"tooltip-format-ethernet": "{ifname} 🖧 | {ipaddr}",
+	"on-click": "networkmanager_dmenu"
+  },
+  "disk": {
+	"interval": 15,
+	"format": "󰋊 {percentage_used:>2}%"
+  },
+  "custom/colorpicker": {
+	"format": "",
+	"return-type": "json",
+	"interval": "once",
+	"exec": "~/.config/waybar/scripts/colorpicker.sh -j",
+	"on-click": "~/.config/waybar/scripts/colorpicker.sh",
+	"signal": 1
+  },
+  "cpu": {
+	"interval": 1,
+	"format": " {usage}%",
+	"min-length": 6,
+	"max-length": 6,
+	"format-icons": [
+	  "▁",
+	  "▂",
+	  "▃",
+	  "▄",
+	  "▅",
+	  "▆",
+	  "▇",
+	  "█"
+	]
+  },
+  "memory": {
+	"format": " {percentage}%"
+  },
+  "hyprland/window": {
+	"format": "( {class} )",
+	"rewrite": {
+	  "(.*) - Mozilla Firefox": "🌎 $1",
+	  "(.*) - zsh": "> [$1]"
+	}
+  },
+  "temperature": {
+	"format": " {temperatureC}°C",
+	"format-critical": " {temperatureC}°C",
+	"interval": 1,
+	"critical-threshold": 80,
+	"on-click": "foot btop"
+  },
+  "pulseaudio": {
+	// Show icon + volume, with a bit of spacing
+	"format": "{icon}  {volume}%",
+	// Icons for your devices
+	"format-icons": {
+	  "headset": "",
+	  // Nerd‐Font headphones icon
+	  "default": ""
+	  // Nerd‐Font speaker icon
+	},
+	// Muted state
+	"format-muted": "  muted",
+	// muted speaker glyph + text
+
+	// Align center so it sits nicely in your bar
+	"justify": "center",
+	// Click to toggle mute, right‐click for mixer
+	"on-click": "amixer set Master toggle",
+	"on-click-right": "pavucontrol",
+	// Tooltip: big icon + volume
+	"tooltip-format": "{icon}  {volume}%"
+  },
+  "jack": {
+	"format": "{} 󱎔",
+	"format-xrun": "{xruns} xruns",
+	"format-disconnected": "DSP off",
+	"realtime": true
+  },
+  "tray": {
+	"icon-size": 14,
+	"spacing": 10
+  },
+  "upower": {
+	"show-icon": false,
+	"hide-if-empty": true,
+	"tooltip": true,
+	"tooltip-spacing": 20
+  },
+  "custom/powerDraw": {
+	"format": "{}",
+	"interval": 1,
+	"exec": "~/.config/waybar/scripts/powerdraw.sh",
+	"return-type": "json"
+  }
+}
+

@@ -1,0 +1,129 @@
+/*
+ * __        __          _                  ____  _         _
+ * \ \      / /_ _ _   _| |__   __ _ _ __  / ___|| |_ _   _| | ___
+ *  \ \ /\ / / _` | | | | '_ \ / _` | '__| \___ \| __| | | | |/ _ \
+ *   \ V  V / (_| | |_| | |_) | (_| | |     ___) | |_| |_| | |  __/
+ *    \_/\_/ \__,_|\__, |_.__/ \__,_|_|    |____/ \__|\__, |_|\___|
+ *                 |___/                              |___/
+ *
+ * by Stephan Raabe (2024)
+ * -----------------------------------------------------
+*/
+@define-color accent      #F32F61; /* Your teal accent */
+@define-color background  #1E1E1E; /* Dark background */
+@define-color bg2         #1D1A2C; /* Slightly lighter for module containers */
+@define-color fg          #E0E0E0; /* Primary text */
+@define-color fg-muted    #A0A0A0; /* Secondary text */
+@define-color warning     #FFBE61; /* Warning state */
+@define-color critical    #EEEAFA; /* Critical state */
+
+/* -----------------------------------------------------
+ * General
+ * ----------------------------------------------------- */
+* {
+    border: none;
+    font-size: 14px;
+    font-family: "JetBrainsMono Nerd Font,JetBrainsMono NF";
+    min-height: 25px;
+}
+
+window#waybar {
+    background: transparent;
+    margin: 5px;
+}
+
+#custom-logo {
+    padding: 0 10px;
+}
+
+.modules-right {
+    padding-left: 5px;
+    border-radius: 15px 0 0 15px;
+    margin-top: 2px;
+    background: @bg2;
+}
+
+.modules-center {
+    padding: 0 15px;
+    margin-top: 2px;
+    border-radius: 15px 15px 15px 15px;
+    background: @bg2;
+}
+
+.modules-left {
+    border-radius: 0 15px 15px 0;
+    margin-top: 2px;
+    background: @bg2;
+}
+
+
+#custom-headsetBat,
+#custom-clipboard,
+#custom-colorpicker,
+#custom-powerDraw,
+#bluetooth,
+#pulseaudio,
+#network,
+#disk,
+#memory,
+#backlight,
+#cpu,
+#temperature,
+#custom-weather,
+#idle_inhibitor,
+#jack,
+#tray,
+#window,
+#workspaces,
+#clock {
+    color: @accent;
+    padding: 0 5px;
+}
+
+#clock {
+    color: #5fd1fa;
+}
+
+/* Pulseaudio muted & temperature critical */
+#pulseaudio.muted,
+#temperature.critical {
+  color:    @critical;
+  padding-top: 0;   /* if you need it */
+}
+
+
+/* Battery states */
+#custom-headsetBat {
+    border: 1px solid transparent;
+    transition: background 0.3s, border-color 0.3s;
+}
+
+#custom-headsetBat.charging {
+    background: @background;
+    border-color: @accent;
+    color: @fg;
+}
+
+#custom-headsetBat.warning:not(.charging) {
+    background: @warning;
+    color: black;
+}
+
+#custom-headsetBat.critical:not(.charging) {
+    background: @critical;
+    color: @fg;
+    animation: blink 0.6s linear infinite alternate;
+}
+
+#custom-updates {
+    color: @accent;
+    padding: 0 5px;
+}
+
+
+@keyframes blink {
+    to {
+        background: @background;
+        color: @fg-muted;
+    }
+}

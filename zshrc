@@ -1,9 +1,7 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Lines configured by zsh-newuser-install
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+plugins=(git archlinux)
+source $ZSH/oh-my-zsh.sh
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
@@ -14,28 +12,15 @@ bindkey -e
 zstyle :compinstall filename '~/.zshrc'
 
 # -----------------------------------------------------
-# Powerlevel10k Setup
-# -----------------------------------------------------
-# Clone if not installed
-if [[ ! -d "$HOME/.powerlevel10k" ]]; then
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$HOME/.powerlevel10k"
-fi
-# Source theme (core functions)
-source "$HOME/.powerlevel10k/powerlevel10k.zsh-theme"
-# Source your customized prompt settings
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-
-
-# -----------------------------------------------------
 # Aliases & Environment
 # -----------------------------------------------------
-
-# These are optional, but it's what *i* have. You can remove them if you don't need them.
+# This is how fastfetch uses animated logos. Using Alacritty won't work for this. Use Kitty or some other emulator with image support.
+kitten icat -n --place 30x30@0x6 --scale-up --align left ~/Pictures/lain_trans.gif | fastfetch --logo-width 30 --raw -
 alias ls='exa'
 alias cat='bat'
 alias find='fd'
 alias ok='echo ok'
-alias clear='clear && fastfetch'
+alias clear='clear && kitten icat -n --place 30x30@0x6 --scale-up --align left ~/Pictures/lain_trans.gif | fastfetch --logo-width 30 --raw -'
 alias kill-orphans='sudo pacman -Rns $(pacman -Qtdq) --noconfirm'
 alias new-mirrors='sudo reflector -c US -f 12 -l 12 --sort rate --verbose --save /etc/pacman.d/mirrorlist'
 alias restart='reboot'
@@ -47,14 +32,16 @@ eval "$(pyenv init - zsh)"
 export NDK_HOME=/opt/android-ndk
 export LANG=en_US.UTF-8
 export XDG_SESSION_TYPE=wayland
-# -------------------------------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------------->
 autoload -Uz compinit
 compinit
-
 typeset -U path PATH
 path=(~/.local/bin $path)
 export PATH
-
 export PATH="$PATH:$HOME/.rvm/bin"
 export ARCH=x86_64
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
